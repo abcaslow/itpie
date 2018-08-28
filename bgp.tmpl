@@ -1,0 +1,13 @@
+
+<table name="hosts">
+<if column="localip" exp="x1=='[var:mgmtip]'">
+! <var:mgmtip/>\n
+router bgp <asn/>\n
+
+<table name="bgpinfo">
+<if column="hosts:localip,localip" exp="x1==x2">
+ neighbor <remoteip/> remote-as <remoteas/>\n
+</if>
+</table>
+</if>
+</table>
