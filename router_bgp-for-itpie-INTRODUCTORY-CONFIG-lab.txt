@@ -1,0 +1,16 @@
+conf t\n
+<table name="bgpasnumbers">
+<if column="localip" exp="x1=='[var:mgmtip]'">
+router bgp <asn/>\n
+<table name="bgpneighborinfo">
+<if column="bgpasnumbers:localip, localip"
+exp="x1==x2">
+neighbor <remoteip/> remote-as <remoteas/>\n
+<if column="bgpasnumbers:localip, localip,rrClient"
+ exp="x1==x2 && x3=='yes'">
+neighbor <remoteip/> route-reflector-client\n
+</if>
+</if>
+</table>
+</if>
+</table>
